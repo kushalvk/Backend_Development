@@ -1,4 +1,3 @@
-// Owns the business rules. Throws plain errors — knows nothing about HTTP.
 const auctionRepo = require('../repository/auction.repository');
 
 class BidError extends Error {

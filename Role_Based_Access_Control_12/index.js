@@ -6,6 +6,7 @@ const connectDB = require('./config/db');
 const authRoutes = require('./routes/auth.routes');
 const errorHandler = require('./middleware/errorHandler');
 const AppError = require('./utils/AppError');
+const userRoutes = require('./routes/user.routes');
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(
 );
 
 app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
 
 app.use((req, res, next) => next(new AppError(`Route ${req.originalUrl} not found`, 404)));
 app.use(errorHandler);

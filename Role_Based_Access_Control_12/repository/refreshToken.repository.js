@@ -18,4 +18,8 @@ module.exports = {
 
     revokeFamily: (family) =>
         RefreshToken.updateMany({ family }, { revoked: true }),
+
+    // Kill every session for a user (role change, deletion, "log out everywhere")
+    revokeAllForUser: (userId) =>
+        RefreshToken.updateMany({ user: userId, revoked: false }, { revoked: true }),
 };

@@ -1,0 +1,27 @@
+{
+  "name": "15_event_driven_architecture",
+  "version": "1.0.0",
+  "description": "",
+  "main": "subscribers.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js",
+    "worker": "nodemon worker.js",
+    "sub:notifications": "nodemon subscribers.js notifications",
+    "sub:analytics": "nodemon subscribers.js analytics",
+    "sub:audit": "nodemon subscribers.js audit",
+    "subscribers": "nodemon subscribers.js notifications analytics"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "dotenv": "^18.0.9",
+    "ioredis": "^6.0.0",
+    "mongoose": "^9.11.4",
+    "nodemon": "^3.1.14",
+    "os": "^0.1.2"
+  }
+}

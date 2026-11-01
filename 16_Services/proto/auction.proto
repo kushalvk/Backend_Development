@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package auction.v1;
+
+service AuctionService {
+  rpc GetAuction (GetAuctionRequest) returns (Auction);
+  rpc ListAuctionsByRoom (ListAuctionsRequest) returns (ListAuctionsResponse);
+  rpc GetRoomStats (GetRoomStatsRequest) returns (RoomStats);
+  rpc PlaceBid (PlaceBidRequest) returns (PlaceBidResponse);
+  // Server streaming: ONE request, a long-lived stream of responses
+  rpc WatchAuction (WatchAuctionRequest) returns (stream BidUpdate);
+}
+
+message Auction {
+  string id = 1;
+  string player_name = 2;
+  double base_price = 3;
+  double current_bid = 4;
+  string current_bidder = 5;   // "" when nobody has bid yet
+  string status = 6;
+  string auction_room = 7;
+  string ends_at = 8;          // ISO-8601
+}
+
+message GetAuctionRequest { string id = 1; }
+message ListAuctionsRequest { string room_id = 1; }
+message ListAuctionsResponse { repeated Auction auctions = 1; }
+message GetRoomStatsRequest { string room_id = 1; }
+
+message RoomStats {
+  int32 total_auctions = 1;
+  int32 live_count = 2;
+  int32 sold_count = 3;
+  double average_bid = 4;
+  double highest_bid = 5;
+}
+
+message PlaceBidRequest {
+  string auction_id = 1;
+  string user_id = 2;
+  double amount = 3;
+}
+message PlaceBidResponse {
+  Auction auction = 1;
+  string previous_bidder_id = 2;
+}
+
+message WatchAuctionRequest { string auction_id = 1; }
+message BidUpdate {
+  string auction_id = 1;
+  double amount = 2;
+  string bidder_id = 3;
+  string occurred_at = 4;
+}

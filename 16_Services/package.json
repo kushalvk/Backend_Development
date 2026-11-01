@@ -1,0 +1,26 @@
+{
+  "name": "16_services",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "seed": "node scripts/seed.js",
+    "start:auction": "nodemon auction-service/index.js",
+    "start:gateway:rest": "nodemon gateway/index.js rest",
+    "start:gateway:grpc": "nodemon gateway/index.js grpc",
+    "watch": "node scripts/watch.js",
+    "bench": "node scripts/benchmark.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.14.7",
+    "@grpc/proto-loader": "^0.8.1",
+    "dotenv": "^18.0.9",
+    "express": "^5.3.0",
+    "mongoose": "^9.11.4",
+    "nodemon": "^3.1.14"
+  }
+}
